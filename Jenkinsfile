@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        sh 'composer install'
+        sh '/usr/local/bin/composer install'
       }
     }
     stage('Test') {
