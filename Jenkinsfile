@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
+    stage('Prepare') {
       steps {
-        git(url: 'https://github.com/cleanphplt/cleanphp-workshop', branch: 'master', changelog: true)
+        sh 'composer install'
       }
     }
     stage('Test') {
@@ -18,6 +18,6 @@ pipeline {
     }
   }
   environment {
-    APP_ENV = 'test'
+    APP_ENV = 'dev'
   }
 }
