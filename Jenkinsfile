@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        sh -c 'composer install'
+        sh 'composer install'
       }
     }
     stage('Test') {
       steps {
-        sh -c './vendor/bin/simple-phpunit'
+        sh './vendor/bin/simple-phpunit'
       }
     }
     stage('Artifact') {
