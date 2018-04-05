@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh './vendor/bin/simple-phpunit'
+        sh 'vendor/bin/simple-phpunit'
       }
     }
     stage('Artifact') {
