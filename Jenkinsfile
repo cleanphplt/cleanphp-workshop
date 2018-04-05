@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        sh '/usr/local/bin/composer install'
+        sh '/usr/local/bin/composer install  --prefer-dist --optimize-autoloader --no-interaction'
       }
     }
     stage('Test') {
