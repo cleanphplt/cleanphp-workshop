@@ -17,7 +17,7 @@ pipeline {
         sh 'APP_ENV=prod /usr/local/bin/composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction'
         sh 'mkdir /tmp/release'
         sh 'cp -r * /tmp/release/'
-        sh 'tar --exclude="*.git" -zcf release.tgz /tmp/release'
+        sh 'tar --exclude="*.git" -zcf release.tgz /tmp/release/*'
         sh 'rm -rf /tmp/release'
       }
     }
