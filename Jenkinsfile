@@ -11,9 +11,15 @@ pipeline {
         sh 'vendor/bin/simple-phpunit'
       }
     }
+    stage('Create release version') {
+      steps {
+        sh '/usr/local/bin/composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction'
+        sh 'tar --exclude="*.git" -zcf release.tgz .'
+      }
+    }
     stage('Artifact') {
       steps {
-        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'release')
+        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'release.tgz')
       }
     }
   }
