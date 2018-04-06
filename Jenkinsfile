@@ -14,7 +14,7 @@ pipeline {
     stage('Create release version') {
       steps {
         sh 'rm -rf var/cache/*'
-        sh '/usr/local/bin/composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction'
+        sh 'APP_ENV=prod /usr/local/bin/composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction'
         sh 'tar --exclude="*.git" -zcf release.tgz .'
       }
     }
