@@ -24,6 +24,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
+        sh 'cd /var/lib/jenkins/cleanphp-ansible && ansible-playbook deploy.yml -i inventory -e artifact=release.tgz'
       }
     }
   }
