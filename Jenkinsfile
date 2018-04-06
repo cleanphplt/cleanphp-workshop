@@ -11,7 +11,7 @@ pipeline {
         sh 'vendor/bin/simple-phpunit'
       }
     }
-    stage('Create release version') {
+    stage('Create artifact') {
       steps {
         sh 'rm -rf var/cache/*'
         sh 'APP_ENV=prod /usr/local/bin/composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction'
@@ -19,11 +19,11 @@ pipeline {
         sh 'cp -r * /tmp/release/'
         sh 'tar --exclude="*.git" -zcf release.tgz /tmp/release/*'
         sh 'rm -rf /tmp/release'
+        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'release.tgz')
       }
     }
-    stage('Artifact') {
+    stage('Deploy') {
       steps {
-        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'release.tgz')
       }
     }
   }
